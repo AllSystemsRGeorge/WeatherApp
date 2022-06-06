@@ -4,8 +4,12 @@ header {
     color: white;
 }
 
-.card {
+#forecast {
     background-color: rgb(43, 43, 150);
     color: white;
-    display: none;
+}
+
+#today {
+    border: solid;
+    margin-bottom: 100px;
 }

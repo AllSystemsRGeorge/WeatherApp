@@ -33,6 +33,8 @@ function displayWeather(data, city) {
 
 };
 
+
+
 $('#search-btn').on('click', fucntion(event) {
     event.preventDeafult();
     let city = $('#city-search').val().trim().split(' ');
