@@ -31,7 +31,19 @@ function weatherSearch(lon, lat) {
 
 function displayWeather(data, city) {
 
-}
+};
+
+$('#search-btn').on('click', fucntion(event) {
+    event.preventDeafult();
+    let city = $('#city-search').val().trim().split(' ');
+    for (i = 0, i < city.length; i ++) {
+        city[i] = city[i][0].toUpperCase() + city[i].substr(1); 
+       };
+    city = city.join(' ');
+    $('#city-serarch').val(' ');
+    geoCode(city)
+});
+
 
 
 // display Weather Function

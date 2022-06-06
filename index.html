@@ -14,27 +14,32 @@
 <header class="row bg-primary text-center">
       <h1 class="col-sm-12">Weather Dashboard</h1>
 </header>
-
-  <br>
+<br>
+<!-- Here is the body of the page with container and cards -->
+<body>
+  <!-- Here is the search bar to look up cities -->
+  <div class="container flex-md-column">
   <h2>Search for a City:</h2>
+  <br>
   <form class="d-flex" role="search">
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
-    <button class="btn btn-outline-success" type="submit" id="search-btn">Search</button>
+    <input class="form-control-lg" type="search" placeholder="Search" aria-label="Search" id="search-input">
   </form>
   <br>
   <div class="d-grid gap-1 col-2">
-  <button type="button" class="btn btn-primary btn-lg">Search</button>
+  <button type="button" class="btn btn-primary btn-lg" id="search-btn">Search</button>
   </div>
 
-<!-- Here is the body of the page with container and cards -->
-<body>
-    
-  <div class="card" style="width: 18rem;">
+  <!-- Here is the container with today's weather -->
+  
+
+
+  <!-- Here is the card where the 5 day forecast will pop up -->
+  <div class="card" style="width: 18rem;" id="5Day">
     <div class="card-body">
-      <h5 class="card-title">Date:</h5>
-      <p class="card-text">Temp:</p>
-      <p class="card-text">Wind:</p>
-      <p class="card-text">Humidity:</p>
+      <h5 class="card-title"></h5>
+      <p class="card-text"></p>
+      <p class="card-text"></p>
+      <p class="card-text"></p>
     </div>
   </div>
 
