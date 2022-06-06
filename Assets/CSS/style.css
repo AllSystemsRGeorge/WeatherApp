@@ -1,0 +1,10 @@
+header {
+    background-image: linear-gradient(to right, rgba(52, 97, 185, 1), rgba(33, 11, 77, 1));
+    text-align: center;
+    color: white;
+}
+
+.card {
+    background-color: rgb(43, 43, 150);
+    color: white;
+}
