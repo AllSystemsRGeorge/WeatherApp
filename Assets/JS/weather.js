@@ -29,52 +29,33 @@ function weatherSearch(lon, lat) {
     })
 };
 
-$('#search-btn').on('submit', () => {
-    let long;
-    let lat;
+var city = $('h2#city');
+var date = $('h3#date');
+var weatherICon = $('img#weather-cion');
+var temperature = $('span#temperature');
+var humidity = $('span#humidity');
+var wind = $('span#wind');
+var uvIndex = $('span#uv-index');
+var cityList = $('div.cityist');
+var cityInput = $('#city-input');
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position)=> {
-            long = position.coords.longitude;
-            lat = position.coords.latitude;
-            const base = `https://api.openweathermap.org/data/2.5/weatherlat=${lat}&lon=${long}&appid=${apiKey}&units=metric`;
-            console.log(base);
-        fetch(base).then((response) => {
-        return response.json();
-        })
-        .then((data) => {
-            const { temp } = data.main;
-            const place = data.name;
-            const { description, icon } = data.weather[0];
-            let foreCard = $('#forecast')
-            let container = $('#today')
-            let cityName = $('<h2>').text(`${data.city + currentDate}`)
-            let foreImg =$('<img>').attr('src', iconLink);
-            let foreTempH = $('<p>').text(`High: ${data.daily[i].temp.max} \xB0F`);
-            let foreTemL = $('<p>').text(`Low: ${data.daily[i].temp.min} \xB0F`);
-            let foreWind = $('<p>').text(`Wind: ${data.daily[i].wind_speed} \MPH`);
-            let foreHumidity =  $('<p>').text(`Low: ${data.daily[i].humdity}%`);
-            container.append(cityName, foreImg, foreTemp, foreWind, foreHumidity)
-            foreCard.append(foreDate, foreImg, foreTemp, foreTempL, foreWind, foreHumidity);
-            foreDiv.append(foreCard);
+let pastCities = [];
 
-            localStorage.setItem('city', JSON.stringify(data.city));
- 
-        });
-    });
+function compare(a, b) {
+    var cityA = a.ity.toUpperCase();
+    var cityB = b.city.toUpperCase();
+
+    let comparison = 0;
+    if (cityA > cityB) {
+        comparison = 1;
+    } else if (cityA < cityB) {
+        comparison = -1;
     }
-});
+    return comparison;
+}
 
-$('#search-btn').on('click', function(event) {
-    event.preventDefault();
-    let city = $('#search-input').val().trim().split(' ');
-    for (i=0; i < city.length; i++) {
-        city[i] = city[i][0].toUpperCase() + city[i].substr(1)
-    };
-    city = city.join('');
-    geoCode(city)
-});
 
+function load()
 
 
 
