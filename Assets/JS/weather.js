@@ -125,5 +125,38 @@ function searchWeather(queryURL) {
         humidity.text(response.main.humidity);
         wind.text((response.wind.speed * 2.237).toFixed(1));
 
-    })
-}
+        let lat = response.coord.lat;
+        let lon = reponse.coord.lon;
+        let queryURLAll = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+        $.ajax({
+            url: queryURLAll,
+            method: 'GET'
+        }).then(function (response) {
+            let uvi = response.current.uvi;
+            let uvColor = setUVIndexColor(uvi);
+            uviIndex.text(response.current.uvi);
+            uviIndex.attr('style', `background-color: ${uvColor}; color: ${uvColor === "yellow" ? "black" : "white"}`);
+            let fiveDay = responsee.daily;
+
+            for (let i = 0; i <= 5; i++) {
+                let currDay = fiveDay[i];
+                $(`div.day-${i} .card-title`).text(moment.unix(currDay.dt).format('L'));
+                $(`div.day-${i} .fiveDay-img`).attr( 'src',
+                `http://openweathermap.org/img/wn/${currDay.weather[0].icon}.png`
+            ).attr('alt', currDay.weather[0].description);
+            $(`div.day-${i} .fiveDay-temp`).text(((currDay.temp.day - 273.15) * 1.8 + 32).toFixed(1));
+            $(`div.day-${i} .fiveDay-humid`).text(currDay.humidity);
+            }
+    });
+});
+};
+
+function displayLastSearchedCity() {
+    if (pastCities[0]) {
+        let queryURL = buildURLFromId(pastCities[0].id);
+        searchWeather(queryURL); 
+    } else {
+        let queryURL = buildURLFromInputs('Palo Alto');
+        searchWeather(queryURL);
+    }
+};
