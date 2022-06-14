@@ -1,8 +1,8 @@
-
+// API key and geoCode
 var apiKey = '9c522f3da8ba41a607c0a5a49b9d3c03';
-var currentDate = moment().format('MM/DD/YY');
 geoCode('Palo Alto');
 
+// Creating function to grab the URL for cities
 function geoCode(city) {
     let requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
     fetch(requestUrl)
@@ -16,6 +16,7 @@ function geoCode(city) {
         })
 };
 
+// Different function to make sure we're grabbing the latitude and longitude
 function weatherSearch(lon, lat) {
     let requestUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
     fetch(requestUrl)
@@ -29,6 +30,7 @@ function weatherSearch(lon, lat) {
     })
 };
 
+// The global variables to make sure they appear in HTML
 var city = $('h2#city');
 var date = $('h3#date');
 var weatherICon = $('img#weather-cion');
@@ -73,6 +75,7 @@ function buildURLFromId(id) {
     return `https://api.openweathermap.org/data/2.5/weather?id=${id}&appid=${apiKey}`;
 };
 
+// Here is the function to display cities when searching for them
 function displayCities(pastCities) {
     cityList.empty();
     pastCities.splice(5);
@@ -80,12 +83,14 @@ function displayCities(pastCities) {
     sortedCities.sort(compare);
     sortedCities.forEach(function (location) {
         let cityDiv = $('<div>').addClass('col-12 city');
-        let cityBtn = $('<button>').adddClass('btn btn-primary city-btn').text.(location.city);
+        let cityBtn = $('<button>').adddClass('btn btn-primary city-btn').text.location.city;
         cityDiv.append(cityBtn);
         cityList.append(cityDiv);
     });
 };
 
+
+// Here is the function that displays the UVI colors
 function setUVIndexColor(uvi) {
     if (uvi < 3) {
         return 'green';

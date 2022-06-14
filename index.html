@@ -1,57 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="reset" href="./Assets/CSS/reset.css">
-    <link rel="stylesheet" href="./Assets/CSS/style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="reset" href="./Assets/CSS/reset.css">
+  <link rel="stylesheet" href="./Assets/CSS/style.css">
 </head>
 
 <!-- Here is the header bar -->
 <header class="row bg-primary text-center">
-      <h1 class="col-sm-12">Weather Dashboard</h1>
+  <h1 class="col-sm-12">Weather Dashboard</h1>
 </header>
 <br>
 <main class="container dashboard">
-        <div class="row p-2">
+  <div class="row p-2">
 
-            <!-- Right column with current weather and 5 day forecast -->
-            <div class="col-sm-12 col-md-9 order-md-2">
-                <div class="row">
+    <!-- Right column with current weather and 5 day forecast -->
+    <div class="col-sm-12 col-md-9 order-md-2">
+      <div class="row">
 
-                    <!-- Current Weather Forecast -->
-                    <div class="col-12 currentWeather p-0">
-                        <div class="d-flex cityName">
-                            <h2 id="city"></h2>
-                            <h3 id="date"></h3>
-                            <img id="weather-icon" />
-                        </div>
-                        <p class="pt-1 pl-2">Temperature: <span id="temperature"></span> &deg;F</p>
-                        <p class="pl-2">Humidity: <span id="humidity"></span>% </p>
-                        <p class="pl-2">Wind Speed: <span id="wind"></span> MPH</p>
-                        <p class="pl-2">UV Index: <span id="uv-index" class="p-1"></span></p>
-                    </div>
+        <!-- Current Weather Forecast -->
+        <div class="col-12 currentWeather p-0">
+          <div class="d-flex cityName">
+            <h2 id="city"></h2>
+            <h3 id="date"></h3>
+            <img id="weather-icon" />
+          </div>
+          <p class="pt-1 pl-2">Temperature: <span id="temperature"></span> &deg;F</p>
+          <p class="pl-2">Humidity: <span id="humidity"></span>% </p>
+          <p class="pl-2">Wind Speed: <span id="wind"></span> MPH</p>
+          <p class="pl-2">UV Index: <span id="uv-index" class="p-1"></span></p>
+        </div>
 
-  <!-- Here is the container with today's weather -->
-  <div class="card position-absolute top-50 start-50 translate-middle-x" style="width: 30rem; height: 30rem;" id="today">
-    <div class="card-body">
+        <!-- 5 Day forecast -->
+        <div class="col-12 fiveDay">
+          <h2>5 Day Forecast</h2>
+          <div class="row">
+            <div class="col-sm-10 col-md-4 offset-lg-1 col-lg-2 p-1">
+              <div class="card day-0 m-0 text-center">
+                <div class="card-body p-1">
+                  <p class="card-title">Day 1</p>
+                  <img class="fiveDay-img mb-2" />
+                  <p class="card-subtitle mb-2 text-muted">Temp: <span class="fiveDay-temp"></span>
+                    &deg;F</p>
+                  <p class="card-subtitle mb-2 text-muted">Humidity: <span class="fiveDay-humid"></span>%</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-10 col-md-4 col-lg-2 p-1 text-center">
+              <div class="card day-1 m-0">
+                <div class="card-body p-1">
+                  <p class="card-title">Day 2</p>
+                  <img class="fiveDay-img mb-2" />
+                  <p class="card-subtitle mb-2 text-muted">Temp: <span class="fiveDay-temp"></span>
+                    &deg;F</p>
+                  <p class="card-subtitle mb-2 text-muted">Humidity: <span class="fiveDay-humid"></span>%</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-10 col-md-4 col-lg-2 p-1 text-center">
+              <div class="card day-2 m-0">
+                <div class="card-body p-1">
+                  <p class="card-title">Day 3</p>
+                  <img class="fiveDay-img mb-2" />
+                  <p class="card-subtitle mb-2 text-muted">Temp: <span class="fiveDay-temp"></span>
+                    &deg;F</p>
+                  <p class="card-subtitle mb-2 text-muted">Humidity: <span class="fiveDay-humid"></span>%</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-10 col-md-4 col-lg-2 p-1 text-center">
+              <div class="card day-3 m-0">
+                <div class="card-body p-1">
+                  <p class="card-title">Day 4</p>
+                  <img class="fiveDay-img mb-2" />
+                  <p class="card-subtitle mb-2 text-muted">Temp: <span class="fiveDay-temp"></span>
+                    &deg;F</p>
+                  <p class="card-subtitle mb-2 text-muted">Humidity: <span class="fiveDay-humid"></span>%</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-10 col-md-4 col-lg-2 p-1 text-center">
+              <div class="card day-4 m-0">
+                <div class="card-body p-1">
+
+                  <p class="card-title">Day 5</p>
+                  <img class="fiveDay-img mb-2" />
+                  <p class="card-subtitle mb-2 text-muted">
+                    Temp: <span class="fiveDay-temp"></span> &deg;F</p>
+                  <p class="card-subtitle mb-2 text-muted">Humidity: <span class="fiveDay-humid"></span>%</p>
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
     </div>
-  </div>
 
-  <!-- Here is the card where the 5 day forecast will pop up -->
-  <div class="card" style="width: 18rem;" id="forecast">
-    <div class="card-body">
+
+    <!-- Here is the card where the 5 day forecast will pop up -->
+    <div class="card" style="width: 18rem;" id="forecast">
+      <div class="card-body">
+      </div>
     </div>
-  </div>
 
-  <!-- Here are the scripts! -->
+    <!-- Here are the scripts! -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"></script>
     <script src="./Assets/JS/weather.js"></script>
 
     <!-- Be sure to give credit to Angie, Ivy, and Nolan for helping! -->
-</body>
+    </body>
+
 </html>
