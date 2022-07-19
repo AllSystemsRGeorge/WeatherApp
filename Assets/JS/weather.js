@@ -1,34 +1,5 @@
-// API key and geoCode
+ // API key
 var apiKey = '9c522f3da8ba41a607c0a5a49b9d3c03';
-geoCode('Palo Alto');
-
-// Creating function to grab the URL for cities
-function geoCode(city) {
-    let requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
-    fetch(requestUrl)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(data) {
-            console.log(data.weather);
-            weatherSearch(data.coord.lon, data.coord.lat);
-            console.log(data);
-        })
-};
-
-// Different function to make sure we're grabbing the latitude and longitude
-function weatherSearch(lon, lat) {
-    let requestUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
-    fetch(requestUrl)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(data) {
-            displayWeather(data, city);
-
-            console.log(data);
-    })
-};
 
 // The global variables to make sure they appear in HTML
 var city = $('h2#city');
@@ -70,8 +41,13 @@ function storeCities() {
     }
 };
 
+function urlFromInputs(city) {
+    if (city) {
+        return `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+    }
+}
 
-function buildURLFromId(id) {
+function urlFromId(id) {
     return `https://api.openweathermap.org/data/2.5/weather?id=${id}&appid=${apiKey}`;
 };
 
@@ -124,7 +100,7 @@ function searchWeather(queryURL) {
         city.text(response.name);
         let formatDate = moment.unix(response.dt).format('L');
         date.text(formatDate);
-        let Icon = response.weather[0].icon;
+        let icon = response.weather[0].icon;
         weatherIcon.attr('src', `http://openweathermap.org/img/wn/${weatherIcon}.png`).attr('alt', response.weather[0].description);
         temperature.html(((response.main.temp - 273.15) * 1.8 + 32).toFixed(1));
         humidity.text(response.main.humidity);
@@ -158,10 +134,10 @@ function searchWeather(queryURL) {
 
 function displayLastSearchedCity() {
     if (pastCities[0]) {
-        let queryURL = buildURLFromId(pastCities[0].id);
+        let queryURL = urlFromId(pastCities[0].id);
         searchWeather(queryURL); 
     } else {
-        let queryURL = buildURLFromInputs('Palo Alto');
+        let queryURL = urlFromInputs('Palo Alto');
         searchWeather(queryURL);
     }
 };
@@ -175,7 +151,7 @@ $('#search-btn').on('click', function (event) {
     cityInput.val('');
 
     if (city) {
-        let queryURL = buildURLFromInputs(city);
+        let queryURL = urlFromId(city);
         searchWeather(queryURL);
     }
 });
@@ -185,7 +161,7 @@ $(document).on('click', 'button.city-btn', function(event) {
     let foundCity = $.grep(pastCities, function (storedCity) {
         return clickedCity === storedCity.city;
     })
-    let queryURL = buildURLFromId(foundCity[0].id)
+    let queryURL = urlFromId(foundCity[0].id)
     searchWeather(queryURL);
 });
 
